@@ -5,5 +5,5 @@ public class Field {
 	/**
 	 * a field is a table of plinth
 	 * */
-	private Plinth[] plinth;
+	private Plinth[][] plinth;
 }
