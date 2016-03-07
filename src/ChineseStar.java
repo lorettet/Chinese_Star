@@ -4,7 +4,9 @@
 public class ChineseStar {
 	
 
-	// TODO write comment	
+	/**
+	 * Constructor without parameters
+	 * */
 	public ChineseStar(){
 		
 	}
@@ -14,7 +16,8 @@ public class ChineseStar {
 	public int askNbrPlayer(){
 		// TODO Auto-generated method stub
 	}
-	
+
+
 // TODO clean comment (ask for advice)
 // TODO this method should have no parameter
 /** play method
@@ -24,7 +27,7 @@ public class ChineseStar {
  *  Players play their turns one by one
  *  The method ends when a player has filed the entier opposit field
  * */
-	public void play(int nbrplayers) {
+	public void play() {
 		// TODO Auto-generated method stub
 	
 	}

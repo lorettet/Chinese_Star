@@ -4,7 +4,7 @@
 public class Main {
 
 // TODO write a "javadoc" comment
-/* application launcher*/
+/** application launcher*/
 	public static void main(String[] args) {
 		
 		new ChineseStar().play(new ChineseStar().askNbrPlayer());
