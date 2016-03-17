@@ -1,21 +1,17 @@
-// TODO update README.md (what/who) (done)
+// TODO fix README.md (character encoding)
 
-// TODO write comment (done)
-/** 
+/**
  * Main class of the application
- * */
-public class Main {
-
-// TODO write a "javadoc" comment
-/** 
- * application launcher
- * main method of the Main class
- * */
-	public static void main(String[] args) {
-		
-		new ChineseStar().play();
-		
+ */
+public class Main
+{
+	/**
+	 * application launcher main method of the Main class
+	 * @param args command-line arguments (unused)
+	 */
+	public static void main(String[] args)
+	{
+		new ChineseCheckerGame(2).play();
 	}
 
 }
-
