@@ -1,5 +1,3 @@
-// TODO fix README.md (character encoding) DONE
-
 /**
  * Main class of the application
  */

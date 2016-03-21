@@ -1,4 +1,3 @@
-// TODO add a link to a description of the game (in english) //DONE
 /**
  * A game of Chinese checkers
  * rules -> http://www.mastersgames.com/rules/chinese-checkers-rules.htm
@@ -15,6 +14,7 @@ public class ChineseCheckerGame
 	 * */
 	private final static int EMPTY_PLINTH = 0;
 	
+	// TODO considering removing these constants
 	/**
 	 * Value of the player 1 (blue)
 	 * */
@@ -50,11 +50,11 @@ public class ChineseCheckerGame
 	 * Number of players
 	 */
 	private int nbrPlayers;
+	
+	// TOD write comment
 	private Tray tray;
 	
 
-	// TODO fix comment (ask for advice) //DONE
-	// TODO consider using an exception to avoid forcing a valid number of players //DONE
 	/**
 	 * Create a game of Chinese Checker ready to be played i.e :
 	 * The tray is set
@@ -63,11 +63,11 @@ public class ChineseCheckerGame
 	 */
 	public ChineseCheckerGame(int nbrPlayers) throws UnexpectedNumberOfPlayerException
 	{
+		// TODO define min/max number of players as constants
 		if (!(nbrPlayers <= 4 && nbrPlayers >= 2 && nbrPlayers == 6))
 		{
 			throw new UnexpectedNumberOfPlayerException();
 		}
-		
 		
 		this.nbrPlayers = nbrPlayers;
 		this.tray = new Tray();
@@ -90,7 +90,9 @@ public class ChineseCheckerGame
 	}
 
 
-	// TODO fix comment (this is not only about a game and starting a game) //DONE
+	// TODO detail comment (main algorithm)
+	
+	// TODO write (done) just after TODO next time, and not at the end of line ;-)
 	/**
 	 * Play the Game
 	 * 	 */

@@ -1,3 +1,4 @@
+// TODO explain (what is a plinth)?
 /**
  * Tray's plinth of Chinese Checker
  * */
@@ -11,7 +12,6 @@ public class Plinth {
 	 * */
 	private int value;
 	
-
 	
 	public Plinth(int value){
 		
