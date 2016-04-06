@@ -63,12 +63,13 @@ public class Tray {
 	private final static int PLAYER_6 = 6;
 	
 	
-
+	// TODO write comment
 	private int[][] tray;
 	
 	
 		
-	// TODO(done) write comment
+	// TODO fix comment (ask for advice)
+	// TODO fix implementation (ask for advice)
 	/**
 	 * Constructor without parameters
 	 * */
