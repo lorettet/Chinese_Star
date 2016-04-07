@@ -3,15 +3,23 @@
  */
 public class Main
 {
-	// TODO main can not throw exceptions (nothing else can catch them)
+	// TODO(done) main can not throw exceptions (nothing else can catch them)
 	/**
 	 * application launcher main method of the Main class
 	 * @param args command-line arguments (unused)
 	 * @throws UnexpectedNumberOfPlayerException when the number of player is different from 2,3,4 or 6 
 	 */
-	public static void main(String[] args) throws UnexpectedNumberOfPlayerException
+	public static void main(String[] args)
 	{
-		new ChineseCheckerGame(2).play();
+		try 
+		{
+			new ChineseCheckerGame(2).play(2);
+		}
+		catch (UnexpectedNumberOfPlayerException e) 
+		{
+			System.err.println("Unexpected number of player");
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -28,14 +28,34 @@ public class ChineseCheckerGame
 	}
 
 
-	// TODO detail comment (main algorithm)
+	// TODO(done) detail comment (main algorithm)
 	
 	/**
 	 * Play the Game
+	 * 1st player play until his turn is finish and then the second player play and so on...
+	 * the game ends when a player reaches the opposite side with all his marbles.
 	 * 	 */
-	public void play()
+	public void play(int nbrPlayer)
 	{
+		if (nbrPlayer == 2)
+		{
+			//TODO
+		}
 		
+		if (nbrPlayer == 3)
+		{
+			//TODO
+		}
+		
+		if (nbrPlayer == 4)
+		{
+			//TODO
+		}
+		
+		if (nbrPlayer == 6)
+		{
+			//TODO
+		}
 	}
 
 }
