@@ -13,7 +13,8 @@ public class Main
 	{
 		try 
 		{
-			new ChineseCheckerGame(2).play(2);
+			new ChineseCheckerGame(2).Play();
+			// ... game is over
 		}
 		catch (UnexpectedNumberOfPlayerException e) 
 		{

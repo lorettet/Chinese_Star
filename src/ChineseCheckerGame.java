@@ -4,6 +4,7 @@
  */
 public class ChineseCheckerGame
 {
+	 
 	/**
 	 * Number of players
 	 */
@@ -18,12 +19,11 @@ public class ChineseCheckerGame
 	/**
 	 * Create a game of Chinese Checker ready to be played i.e :
 	 * The tray is set
-	 * The first player is allowed to play
 	 * @throws UnexpestedNumberOfPlayerException when the number of player is different from 2,3,4 or 6 
 	 */
 	public ChineseCheckerGame(int nbrPlayers) throws UnexpectedNumberOfPlayerException
 	{	
-		this.nbrPlayers=nbrPlayers;
+		this.nbrPlayers = nbrPlayers;
 		this.tray = new Tray(nbrPlayers);
 	}
 
@@ -32,30 +32,59 @@ public class ChineseCheckerGame
 	
 	/**
 	 * Play the Game
-	 * 1st player play until his turn is finish and then the second player play and so on...
-	 * the game ends when a player reaches the opposite side with all his marbles.
+	 * 
+	 * <current player is player 1>
+	 * while (<game is not over>)
+	 * {
+	 * 		do
+	 * 		{
+	 * 			<ask current player for a move of a pawn>
+	 *		}
+	 *		while (<the move is not valid>
+	 *      <execute move>
+	 * 		<switch to next player>
+	 * }
 	 * 	 */
-	public void play(int nbrPlayer)
+	public void Play()
 	{
-		if (nbrPlayer == 2)
+		
+		
+		if (this.nbrPlayers == 2)
+		{
+			int winner = 0;
+			int currentPlayer = Tray.PLAYER_1;
+			
+			while (winner == 0)
+			{
+			/*
+			do
+			{
+				//ask current player a move of a pawn
+			}
+			while (<the move is not valid)
+			execute the move
+			*/
+			winner = this.tray.GameState(currentPlayer);
+			currentPlayer = this.tray.NextPlayer(this.nbrPlayers, currentPlayer);
+			}
+		}
+		
+		if (this.nbrPlayers == 3)
 		{
 			//TODO
 		}
 		
-		if (nbrPlayer == 3)
+		if (this.nbrPlayers == 4)
 		{
 			//TODO
 		}
 		
-		if (nbrPlayer == 4)
-		{
-			//TODO
-		}
-		
-		if (nbrPlayer == 6)
+		if (this.nbrPlayers == 6)
 		{
 			//TODO
 		}
 	}
+	
+	
 
 }

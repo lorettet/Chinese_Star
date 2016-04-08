@@ -35,32 +35,32 @@ public class Tray {
 	/**
 	 * Value of the player 1 (blue)
 	 * */
-	private final static int PLAYER_1 = 1;
+	public final static int PLAYER_1 = 1;
 	
 	/**
 	 * Value of the player 2 (purple)
 	 * */
-	private final static int PLAYER_2 = 2;
+	public final static int PLAYER_2 = 2;
 	
 	/**
 	 * Value of the player 3 (red)
 	 * */
-	private final static int PLAYER_3 = 3;
+	public final static int PLAYER_3 = 3;
 	
 	/**
 	 * Value of the player 4 (orange)
 	 * */
-	private final static int PLAYER_4 = 4;
+	public final static int PLAYER_4 = 4;
 	
 	/**
 	 * Value of the player 5 (yellow)
 	 * */
-	private final static int PLAYER_5 = 5;
+	public final static int PLAYER_5 = 5;
 	
 	/**
 	 * Value of the player 6 (green)
 	 * */
-	private final static int PLAYER_6 = 6;
+	public final static int PLAYER_6 = 6;
 	
 	
 	// TODO(done) write comment
@@ -101,6 +101,7 @@ public class Tray {
 			this.SetPlayer1Field();
 			this.SetPlayer3Field();
 			this.SetPlayer5Field();
+			this.SetEmptyFieldFor3Players();
 		}
 		
 		if (nbrPlayers==4){
@@ -216,6 +217,145 @@ public class Tray {
 		for(int j=4;j>=6;j++) this.tray[2][j] = PLAYER_6;
 		for(int j=4;j>=7;j++) this.tray[3][j] = PLAYER_6;
 	}
-
-
+	
+	private void SetEmptyFieldFor3Players()
+	{
+		this.tray[9][4] = EMPTY_PLINTH;
+		for(int j=4;j>=5;j++) this.tray[10][j] = EMPTY_PLINTH;
+		for(int j=4;j>=6;j++) this.tray[11][j] = EMPTY_PLINTH;
+		for(int j=4;j>=7;j++) this.tray[12][j] = EMPTY_PLINTH;
+		
+		this.tray[9][13] = EMPTY_PLINTH;
+		for(int j=13;j>=14;j++) this.tray[10][j] = EMPTY_PLINTH;
+		for(int j=13;j>=15;j++) this.tray[11][j] = EMPTY_PLINTH;
+		for(int j=13;j>=16;j++) this.tray[12][j] = EMPTY_PLINTH;	
+		
+		for(int j=9;j>=12;j++) this.tray[4][j] = EMPTY_PLINTH;
+		for(int j=10;j>=12;j++) this.tray[5][j] = EMPTY_PLINTH;
+		for(int j=11;j>=12;j++) this.tray[6][j] = EMPTY_PLINTH;
+		this.tray[7][12] = EMPTY_PLINTH;
+	}
+	
+	/**
+	 * Indicate if the game is finished or not
+	 * @return int 0 if the game is not finished yet or the number the winner  
+	 */
+	public int GameState(int currentPlayer)
+	{
+			
+				if (currentPlayer == PLAYER_1
+					&& this.tray[9][13] == currentPlayer 
+					&& this.tray[10][13] == currentPlayer
+					&& this.tray[10][14] == currentPlayer
+					&& this.tray[11][13] == currentPlayer
+					&& this.tray[11][14] == currentPlayer
+					&& this.tray[11][15] == currentPlayer
+					&& this.tray[12][13] == currentPlayer
+					&& this.tray[12][14] == currentPlayer
+					&& this.tray[12][15] == currentPlayer
+					&& this.tray[12][16] == currentPlayer
+					|| currentPlayer == PLAYER_2
+					&& this.tray[4][9] == currentPlayer 
+					&& this.tray[4][10] == currentPlayer
+					&& this.tray[4][11] == currentPlayer
+					&& this.tray[4][12] == currentPlayer
+					&& this.tray[5][10] == currentPlayer
+					&& this.tray[5][11] == currentPlayer
+					&& this.tray[5][12] == currentPlayer
+					&& this.tray[6][11] == currentPlayer
+					&& this.tray[6][12] == currentPlayer
+					&& this.tray[7][12] == currentPlayer
+					|| currentPlayer == PLAYER_3
+					&& this.tray[0][4] == currentPlayer 
+					&& this.tray[1][4] == currentPlayer
+					&& this.tray[1][5] == currentPlayer
+					&& this.tray[2][4] == currentPlayer
+					&& this.tray[2][5] == currentPlayer
+					&& this.tray[2][6] == currentPlayer
+					&& this.tray[3][4] == currentPlayer
+					&& this.tray[3][5] == currentPlayer
+					&& this.tray[3][6] == currentPlayer
+					&& this.tray[3][7] == currentPlayer
+					|| currentPlayer == PLAYER_4
+					&& this.tray[4][0] == currentPlayer 
+					&& this.tray[4][1] == currentPlayer
+					&& this.tray[4][2] == currentPlayer
+					&& this.tray[4][3] == currentPlayer
+					&& this.tray[5][1] == currentPlayer
+					&& this.tray[5][2] == currentPlayer
+					&& this.tray[5][3] == currentPlayer
+					&& this.tray[6][2] == currentPlayer
+					&& this.tray[6][3] == currentPlayer
+					&& this.tray[7][3] == currentPlayer
+					|| currentPlayer == PLAYER_5
+					&& this.tray[9][4] == currentPlayer 
+					&& this.tray[10][4] == currentPlayer
+					&& this.tray[10][5] == currentPlayer
+					&& this.tray[11][4] == currentPlayer
+					&& this.tray[11][5] == currentPlayer
+					&& this.tray[11][6] == currentPlayer
+					&& this.tray[12][4] == currentPlayer
+					&& this.tray[12][5] == currentPlayer
+					&& this.tray[12][6] == currentPlayer
+					&& this.tray[12][7] == currentPlayer
+					|| currentPlayer == PLAYER_6
+					&& this.tray[13][9] == currentPlayer 
+					&& this.tray[13][10] == currentPlayer
+					&& this.tray[13][11] == currentPlayer
+					&& this.tray[13][12] == currentPlayer
+					&& this.tray[14][10] == currentPlayer
+					&& this.tray[14][11] == currentPlayer
+					&& this.tray[14][12] == currentPlayer
+					&& this.tray[15][11] == currentPlayer
+					&& this.tray[15][12] == currentPlayer
+					&& this.tray[16][12] == currentPlayer)
+				{
+					return currentPlayer;
+				}
+				else
+				{
+					return 0;
+				}
+	}
+				/**
+				 * TODO 
+				 * @param nbrPlayers
+				 * @param currentPlayer
+				 * @return
+				 */
+				public int NextPlayer(int nbrPlayers, int currentPlayer)
+				{
+					if (nbrPlayers == 2)
+					{
+						if (currentPlayer == 1) currentPlayer = 4;
+						if (currentPlayer == 4) currentPlayer = 1;
+					}
+					
+					if (nbrPlayers == 3)
+					{
+						if (currentPlayer == 1) currentPlayer = 3;
+						if (currentPlayer == 3) currentPlayer = 5;
+						if (currentPlayer == 5) currentPlayer = 1;
+					}
+					
+					if (nbrPlayers == 4)
+					{
+						if (currentPlayer == 2) currentPlayer = 3;
+						if (currentPlayer == 3) currentPlayer = 5;
+						if (currentPlayer == 5) currentPlayer = 2;
+					}
+					
+					if (nbrPlayers == 6)
+					{
+						if (currentPlayer == 1) currentPlayer = 2;
+						if (currentPlayer == 2) currentPlayer = 3;
+						if (currentPlayer == 3) currentPlayer = 4;
+						if (currentPlayer == 4) currentPlayer = 5;
+						if (currentPlayer == 5) currentPlayer = 6;
+						if (currentPlayer == 6) currentPlayer = 1;
+					}
+					
+					return currentPlayer;
+				}
 }
+
