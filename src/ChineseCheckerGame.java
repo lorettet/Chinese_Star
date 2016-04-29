@@ -45,7 +45,7 @@ public class ChineseCheckerGame
 	 * 		<switch to next player>
 	 * }
 	 * 	 */
-	public void Play()
+	public void play()
 	{
 		
 		
