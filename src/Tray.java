@@ -184,11 +184,11 @@ public class Tray {
 	 * @throws InvalidParameterPlayerException 
 	 */
 
-	public Player GameWonTest(int numberPlayers, Player currentPlayer) throws InvalidParameterPlayerException
+	public boolean GameWonTest(int numberPlayers, Player currentPlayer) throws InvalidParameterPlayerException
 	{
 			// TODO edit this method 
 		int numberCurrentPlayer = 0;
-		PlinthType PlinthToWin;
+		PlinthType PlinthToWin = null;
 		switch(numberPlayers){
 		case 2:
 			switch(currentPlayer){
@@ -221,53 +221,81 @@ public class Tray {
 			default: throw new InvalidParameterPlayerException();
 			}
 		case 6:
+			switch(currentPlayer){
+			case PLAYER1: 	numberCurrentPlayer = 1;
+							PlinthToWin = PlinthType.PLINTH4;
+			case PLAYER2: 	numberCurrentPlayer = 2;
+							PlinthToWin = PlinthType.PLINTH5;
+			case PLAYER3: 	numberCurrentPlayer = 3;
+							PlinthToWin = PlinthType.PLINTH6;
+			case PLAYER4: 	numberCurrentPlayer = 4;
+							PlinthToWin = PlinthType.PLINTH1;
+			case PLAYER5: 	numberCurrentPlayer = 5;
+							PlinthToWin = PlinthType.PLINTH2;
+			case PLAYER6: 	numberCurrentPlayer = 6;
+							PlinthToWin = PlinthType.PLINTH3;
+			default: throw new InvalidParameterPlayerException();
+			}
 		}
 		for (int index = 0; index<PLINTHS_BY_AREA[numberCurrentPlayer].length; index++){
-			
+			if(this.tray[PLINTHS_BY_AREA[numberCurrentPlayer][index].getI()][PLINTHS_BY_AREA[numberCurrentPlayer][index].getJ()] != PlinthToWin)return false;
 		}
-		return Player.PLAYER0;
-				
+		return true;	
 	}
 				/**
 				 * TODO 
 				 * @param nbrPlayers
 				 * @param currentPlayer
 				 * @return
+				 * @throws InvalidParameterPlayerException 
+				 * @throws UnexpectedNumberOfPlayerException 
 				 */
-				public int NextPlayer(int nbrPlayers, int currentPlayer)
+	public Player NextPlayer(int numberPlayers, Player currentPlayer) throws InvalidParameterPlayerException, UnexpectedNumberOfPlayerException
 				// TODO edit this method
-				{
-					if (nbrPlayers == 2)
-					{
-						if (currentPlayer == 1) currentPlayer = 4;
-						if (currentPlayer == 4) currentPlayer = 1;
-					}
-					
-					if (nbrPlayers == 3)
-					{
-						if (currentPlayer == 1) currentPlayer = 3;
-						if (currentPlayer == 3) currentPlayer = 5;
-						if (currentPlayer == 5) currentPlayer = 1;
-					}
-					
-					if (nbrPlayers == 4)
-					{
-						if (currentPlayer == 2) currentPlayer = 3;
-						if (currentPlayer == 3) currentPlayer = 5;
-						if (currentPlayer == 5) currentPlayer = 2;
-					}
-					
-					if (nbrPlayers == 6)
-					{
-						if (currentPlayer == 1) currentPlayer = 2;
-						if (currentPlayer == 2) currentPlayer = 3;
-						if (currentPlayer == 3) currentPlayer = 4;
-						if (currentPlayer == 4) currentPlayer = 5;
-						if (currentPlayer == 5) currentPlayer = 6;
-						if (currentPlayer == 6) currentPlayer = 1;
-					}
-					
-					return currentPlayer;
-				}
+	{
+		switch(numberPlayers){
+		case 2:
+			switch(currentPlayer){
+			case PLAYER1: return Player.PLAYER2;
+			case PLAYER2: return Player.PLAYER1;
+			default: throw new InvalidParameterPlayerException();
+			}
+		case 3:
+			switch(currentPlayer){
+			case PLAYER1: return Player.PLAYER2;
+			case PLAYER2: return Player.PLAYER3;
+			case PLAYER3: return Player.PLAYER1;
+			default: throw new InvalidParameterPlayerException();
+			}
+		case 4:
+			switch(currentPlayer){
+			case PLAYER1: return Player.PLAYER2;	
+			case PLAYER2: return Player.PLAYER3;
+			case PLAYER3: return Player.PLAYER4;
+			case PLAYER4: return Player.PLAYER1;
+			default: throw new InvalidParameterPlayerException();
+			}
+		case 6:
+			switch(currentPlayer){
+			case PLAYER1: return Player.PLAYER2;
+			case PLAYER2: return Player.PLAYER3;
+			case PLAYER3: return Player.PLAYER4;
+			case PLAYER4: return Player.PLAYER5;
+			case PLAYER5: return Player.PLAYER6;
+			case PLAYER6: return Player.PLAYER1;
+			default: throw new InvalidParameterPlayerException();
+			}
+		}
+		throw new UnexpectedNumberOfPlayerException();
+	}
+	
+	/**
+	 * Move a pawn
+	 */
+	public boolean movePawnTest(Player currentPlayer, Position initPosition, Position nextPosition){
+		if(this.tray[nextPosition.getI()][nextPosition.getJ()] != PlinthType.EMPTY_PLINTH) return false;
+		return true;
+
+	}
 }
 

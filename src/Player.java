@@ -4,10 +4,6 @@
  */
 public enum Player {
 	/**
-	 * Player0 = Nobody
-	 */
-	PLAYER0,
-	/**
 	 * PlayerX represents the Xth Player 
 	 */
 	PLAYER1,

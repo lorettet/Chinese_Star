@@ -7,9 +7,10 @@ public class Main
 	/**
 	 * application launcher main method of the Main class
 	 * @param args command-line arguments (unused)
+	 * @throws InvalidParameterPlayerException 
 	 * @throws UnexpectedNumberOfPlayerException when the number of player is different from 2,3,4 or 6 
 	 */
-	public static void main(String[] args)
+	public static void main(String[] args) throws InvalidParameterPlayerException
 	{
 		try 
 		{

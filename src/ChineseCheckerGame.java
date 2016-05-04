@@ -44,45 +44,31 @@ public class ChineseCheckerGame
 	 *      <execute move>
 	 * 		<switch to next player>
 	 * }
+	 * @throws UnexpectedNumberOfPlayerException 
+	 * @throws InvalidParameterPlayerException 
 	 * 	 */
-	public void play()
+	public void play() throws InvalidParameterPlayerException, UnexpectedNumberOfPlayerException
 	{
-		
-		
-		if (this.nbrPlayers == 2)
-		{
-			int winner = 0;
+
 			Player currentPlayer = Player.PLAYER1;
 			
-			while (winner == 0)
+			Position positionTest = new Position(10,10);
+			Position positionTest2 = new Position(11,11);
+			
+			while (true)
 			{
-			/*
+			
 			do
 			{
-				//ask current player a move of a pawn
+				
 			}
-			while (<the move is not valid)
-			execute the move
-			*/
-			winner = this.tray.GameWonTest(currentPlayer);
+			while (this.tray.movePawnTest(currentPlayer, positionTest, positionTest2));
+			//execute the move
+			this.tray.movePawn();
+			//check if the game is finished
+			if(this.tray.GameWonTest(this.nbrPlayers, currentPlayer)) break;
 			currentPlayer = this.tray.NextPlayer(this.nbrPlayers, currentPlayer);
 			}
-		}
-		
-		if (this.nbrPlayers == 3)
-		{
-			//TODO
-		}
-		
-		if (this.nbrPlayers == 4)
-		{
-			//TODO
-		}
-		
-		if (this.nbrPlayers == 6)
-		{
-			//TODO
-		}
 	}
 
 
