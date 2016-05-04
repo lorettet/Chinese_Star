@@ -60,16 +60,22 @@ public class ChineseCheckerGame
 			
 			do
 			{
-				
+				//Ask current player a move of a pawn
 			}
-			while (this.tray.movePawnTest(currentPlayer, positionTest, positionTest2));
+			while (!(this.tray.movePawnTest(positionTest, positionTest2)));
 			//execute the move
-			this.tray.movePawn();
+			this.tray.movePawn(currentPlayer, positionTest, positionTest2);
 			//check if the game is finished
 			if(this.tray.GameWonTest(this.nbrPlayers, currentPlayer)) break;
 			currentPlayer = this.tray.NextPlayer(this.nbrPlayers, currentPlayer);
 			}
+			switch(currentPlayer){
+			case PLAYER1: System.out.println("The player 1 win!");
+			case PLAYER2: System.out.println("The player 2 win!"); 
+			case PLAYER3: System.out.println("The player 3 win!"); 
+			case PLAYER4: System.out.println("The player 4 win!"); 
+			case PLAYER5: System.out.println("The player 5 win!"); 
+			case PLAYER6: System.out.println("The player 6 win!"); 
+			}
 	}
-
-
 }

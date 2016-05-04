@@ -290,12 +290,38 @@ public class Tray {
 	}
 	
 	/**
-	 * Move a pawn
+	 * Ask if the move is allowed
+	 * @param initPosition
+	 * @param nextPosition
+	 * @return boolean
 	 */
-	public boolean movePawnTest(Player currentPlayer, Position initPosition, Position nextPosition){
+	public boolean movePawnTest(Position initPosition, Position nextPosition){
 		if(this.tray[nextPosition.getI()][nextPosition.getJ()] != PlinthType.EMPTY_PLINTH) return false;
-		return true;
-
+		if(initPosition.getI()-1 == nextPosition.getI() && initPosition.getJ()-1 == nextPosition.getJ()) return true;
+		if(initPosition.getI()-1 == nextPosition.getI() && initPosition.getJ() == nextPosition.getJ()) return true;
+		if(initPosition.getI() == nextPosition.getI() && initPosition.getJ()-1 == nextPosition.getJ()) return true;
+		if(initPosition.getI()+1 == nextPosition.getI() && initPosition.getJ()+1 == nextPosition.getJ()) return true;
+		if(initPosition.getI()+1 == nextPosition.getI() && initPosition.getJ() == nextPosition.getJ()) return true;
+		if(initPosition.getI() == nextPosition.getI() && initPosition.getJ()+1 == nextPosition.getJ()) return true;
+		return false;
+	}
+	/**
+	 * Move a pawn
+	 * @param currentPlayer
+	 * @param initPosition
+	 * @param nextPosition
+	 */
+	public void movePawn(Player currentPlayer, Position initPosition, Position nextPosition) {
+		
+		switch(currentPlayer){
+		case PLAYER1: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH1;
+		case PLAYER2: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH2;
+		case PLAYER3: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH3;
+		case PLAYER4: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH4;
+		case PLAYER5: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH5;
+		case PLAYER6: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH6;	
+		}
+		this.tray[initPosition.getI()][initPosition.getJ()] = PlinthType.EMPTY_PLINTH;	
 	}
 }
 
