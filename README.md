@@ -37,10 +37,10 @@ Y Y Y Y . . . . . R R R R
             
 6 PLAYER REPRESENTATION OF THE TRAY IN TABLE
 
-"i" is the rank of the row
-"j" is the rank of the column 
+"j" is the rank of the row
+"i" is the rank of the column 
 
-	00	01	02	03	04	05	06	07	08	09	10	11	12	13	14	15	16 j
+	00	01	02	03	04	05	06	07	08	09	10	11	12	13	14	15	16 i
 00	-1	-1	-1	-1	G	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
 01	-1	-1	-1	-1	G	G	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
 02	-1	-1	-1	-1	G	G	G	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
@@ -58,4 +58,4 @@ Y Y Y Y . . . . . R R R R
 14	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	R	R	R	-1	-1	-1	-1
 15	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	R	R	-1	-1	-1	-1
 16	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	R	-1	-1	-1	-1
-i
+j

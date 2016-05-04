@@ -52,7 +52,7 @@ public class ChineseCheckerGame
 		if (this.nbrPlayers == 2)
 		{
 			int winner = 0;
-			int currentPlayer = Tray.PLAYER_1;
+			Player currentPlayer = Player.PLAYER1;
 			
 			while (winner == 0)
 			{
@@ -64,7 +64,7 @@ public class ChineseCheckerGame
 			while (<the move is not valid)
 			execute the move
 			*/
-			winner = this.tray.GameState(currentPlayer);
+			winner = this.tray.GameWonTest(currentPlayer);
 			currentPlayer = this.tray.NextPlayer(this.nbrPlayers, currentPlayer);
 			}
 		}
@@ -84,7 +84,6 @@ public class ChineseCheckerGame
 			//TODO
 		}
 	}
-	
-	
+
 
 }
