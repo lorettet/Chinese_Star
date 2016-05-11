@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * A game of Chinese checkers
  * rules -> http://www.mastersgames.com/rules/chinese-checkers-rules.htm
@@ -52,8 +55,9 @@ public class ChineseCheckerGame
 
 			Player currentPlayer = Player.PLAYER1;
 			
-			Position positionTest = new Position(10,10);
-			Position positionTest2 = new Position(11,11);
+			Position initPosition = new Position(10,10);
+			Position endPosition = new Position(11,11);
+			LinkedList<Position> moveList = new LinkedList<Position>();
 			
 			while (true)
 			{
@@ -61,21 +65,22 @@ public class ChineseCheckerGame
 			do
 			{
 				//Ask current player a move of a pawn
+				
 			}
-			while (!(this.tray.movePawnTest(positionTest, positionTest2)));
+			while (!(this.tray.movePawnTest(moveList)));
 			//execute the move
-			this.tray.movePawn(currentPlayer, positionTest, positionTest2);
+			this.tray.movePawn(currentPlayer, initPosition, endPosition);
 			//check if the game is finished
 			if(this.tray.GameWonTest(this.nbrPlayers, currentPlayer)) break;
 			currentPlayer = this.tray.NextPlayer(this.nbrPlayers, currentPlayer);
 			}
 			switch(currentPlayer){
-			case PLAYER1: System.out.println("The player 1 win!");
-			case PLAYER2: System.out.println("The player 2 win!"); 
-			case PLAYER3: System.out.println("The player 3 win!"); 
-			case PLAYER4: System.out.println("The player 4 win!"); 
-			case PLAYER5: System.out.println("The player 5 win!"); 
-			case PLAYER6: System.out.println("The player 6 win!"); 
+			case PLAYER1: System.out.println("The player 1 win!");break;
+			case PLAYER2: System.out.println("The player 2 win!"); break;
+			case PLAYER3: System.out.println("The player 3 win!"); break;
+			case PLAYER4: System.out.println("The player 4 win!"); break;
+			case PLAYER5: System.out.println("The player 5 win!"); break;
+			case PLAYER6: System.out.println("The player 6 win!");
 			}
 	}
 }

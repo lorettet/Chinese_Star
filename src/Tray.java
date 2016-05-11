@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.LinkedList;
+
 /**
  * A tray of Chinese Checker
  * */
@@ -187,58 +190,73 @@ public class Tray {
 	public boolean GameWonTest(int numberPlayers, Player currentPlayer) throws InvalidParameterPlayerException
 	{
 			// TODO edit this method 
-		int numberCurrentPlayer = 0;
+		int fieldToWin = 0;
 		PlinthType PlinthToWin = null;
 		switch(numberPlayers){
 		case 2:
 			switch(currentPlayer){
-			case PLAYER1: 	numberCurrentPlayer = 1;
-							PlinthToWin = PlinthType.PLINTH4;
-			case PLAYER2: 	numberCurrentPlayer = 2;
+			case PLAYER1: 	fieldToWin = 4;
 							PlinthToWin = PlinthType.PLINTH1;
+							break;
+			case PLAYER2: 	fieldToWin = 1;
+							PlinthToWin = PlinthType.PLINTH2;
+							break;
 			default: throw new InvalidParameterPlayerException();
 			}
 		case 3:
 			switch(currentPlayer){
-			case PLAYER1: 	numberCurrentPlayer = 1;
-							PlinthToWin = PlinthType.PLINTH4;
-			case PLAYER2: 	numberCurrentPlayer = 2;
-							PlinthToWin = PlinthType.PLINTH6;
-			case PLAYER3: 	numberCurrentPlayer = 3;
+			case PLAYER1: 	fieldToWin = 4;
+							PlinthToWin = PlinthType.PLINTH1;
+							break;
+			case PLAYER2: 	fieldToWin = 6;
 							PlinthToWin = PlinthType.PLINTH2;
+							break;
+			case PLAYER3: 	fieldToWin = 2;
+							PlinthToWin = PlinthType.PLINTH3;
+							break;
 			default: throw new InvalidParameterPlayerException();
 			}
 		case 4:
 			switch(currentPlayer){
-			case PLAYER1: 	numberCurrentPlayer = 1;
-							PlinthToWin = PlinthType.PLINTH5;
-			case PLAYER2: 	numberCurrentPlayer = 2;
-							PlinthToWin = PlinthType.PLINTH6;
-			case PLAYER3: 	numberCurrentPlayer = 3;
+			case PLAYER1: 	fieldToWin = 5;
+							PlinthToWin = PlinthType.PLINTH1;
+							break;
+			case PLAYER2: 	fieldToWin = 6;
 							PlinthToWin = PlinthType.PLINTH2;
-			case PLAYER4: 	numberCurrentPlayer = 4;
+							break;
+			case PLAYER3: 	fieldToWin = 2;
 							PlinthToWin = PlinthType.PLINTH3;
+							break;
+			case PLAYER4: 	fieldToWin = 3;
+							PlinthToWin = PlinthType.PLINTH4;
+							break;
 			default: throw new InvalidParameterPlayerException();
 			}
 		case 6:
 			switch(currentPlayer){
-			case PLAYER1: 	numberCurrentPlayer = 1;
-							PlinthToWin = PlinthType.PLINTH4;
-			case PLAYER2: 	numberCurrentPlayer = 2;
-							PlinthToWin = PlinthType.PLINTH5;
-			case PLAYER3: 	numberCurrentPlayer = 3;
-							PlinthToWin = PlinthType.PLINTH6;
-			case PLAYER4: 	numberCurrentPlayer = 4;
+			case PLAYER1: 	fieldToWin = 4;
 							PlinthToWin = PlinthType.PLINTH1;
-			case PLAYER5: 	numberCurrentPlayer = 5;
+							break;
+			case PLAYER2: 	fieldToWin = 5;
 							PlinthToWin = PlinthType.PLINTH2;
-			case PLAYER6: 	numberCurrentPlayer = 6;
+							break;
+			case PLAYER3: 	fieldToWin = 6;
 							PlinthToWin = PlinthType.PLINTH3;
+							break;
+			case PLAYER4: 	fieldToWin = 1;
+							PlinthToWin = PlinthType.PLINTH4;
+							break;
+			case PLAYER5: 	fieldToWin = 2;
+							PlinthToWin = PlinthType.PLINTH5;
+							break;
+			case PLAYER6: 	fieldToWin = 3;
+							PlinthToWin = PlinthType.PLINTH6;
+							break;
 			default: throw new InvalidParameterPlayerException();
 			}
 		}
-		for (int index = 0; index<PLINTHS_BY_AREA[numberCurrentPlayer].length; index++){
-			if(this.tray[PLINTHS_BY_AREA[numberCurrentPlayer][index].getI()][PLINTHS_BY_AREA[numberCurrentPlayer][index].getJ()] != PlinthToWin)return false;
+		for (int index = 0; index<PLINTHS_BY_AREA[fieldToWin].length; index++){
+			if(this.tray[PLINTHS_BY_AREA[fieldToWin][index].getI()][PLINTHS_BY_AREA[fieldToWin][index].getJ()] != PlinthToWin)return false;
 		}
 		return true;	
 	}
@@ -295,16 +313,49 @@ public class Tray {
 	 * @param nextPosition
 	 * @return boolean
 	 */
-	public boolean movePawnTest(Position initPosition, Position nextPosition){
-		if(this.tray[nextPosition.getI()][nextPosition.getJ()] != PlinthType.EMPTY_PLINTH) return false;
+	public boolean movePawnTest(LinkedList<Position> moveList){
+		//Old code
+		/*if(this.tray[nextPosition.getI()][nextPosition.getJ()] != PlinthType.EMPTY_PLINTH) return false;
 		if(initPosition.getI()-1 == nextPosition.getI() && initPosition.getJ()-1 == nextPosition.getJ()) return true;
 		if(initPosition.getI()-1 == nextPosition.getI() && initPosition.getJ() == nextPosition.getJ()) return true;
 		if(initPosition.getI() == nextPosition.getI() && initPosition.getJ()-1 == nextPosition.getJ()) return true;
 		if(initPosition.getI()+1 == nextPosition.getI() && initPosition.getJ()+1 == nextPosition.getJ()) return true;
 		if(initPosition.getI()+1 == nextPosition.getI() && initPosition.getJ() == nextPosition.getJ()) return true;
 		if(initPosition.getI() == nextPosition.getI() && initPosition.getJ()+1 == nextPosition.getJ()) return true;
+		return false;*/
+		
+		//TODO Parcourir la list pour voir si toute les positions pointent des EMPTY_PLINTH
+		
+		Position initPosition = moveList.get(0);
+		Position finalPosition = moveList.get(moveList.size()-1);
+		
+		if(moveList.size()==2){
+			LinkedList<Position> aroundPlinthList = plinthRadar(initPosition);
+			LinkedList<Position> aroundEmptyPlithList = new LinkedList<Position>();
+			
+			for(Iterator it=aroundPlinthList.iterator(); it.hasNext();){
+					if(this.tray[initPosition.getI()][initPosition.getJ()]==PlinthType.EMPTY_PLINTH) aroundEmptyPlithList.add(e/*TODO*/);		}
+			
+		}
+		
 		return false;
 	}
+	
+	/**
+	 * Detect all the near position of the current position
+	 */
+	public LinkedList<Position> plinthRadar(Position currentPosition){
+		
+		LinkedList<Position> returnList = new LinkedList<Position>();
+		returnList.add(new Position(currentPosition.getI()-1, currentPosition.getJ()-1));
+		returnList.add(new Position(currentPosition.getI()-1, currentPosition.getJ()));
+		returnList.add(new Position(currentPosition.getI(), currentPosition.getJ()-1));
+		returnList.add(new Position(currentPosition.getI()+1, currentPosition.getJ()+1));
+		returnList.add(new Position(currentPosition.getI(), currentPosition.getJ()+1));
+		returnList.add(new Position(currentPosition.getI()+1, currentPosition.getJ()));
+		return returnList;	
+	}
+	
 	/**
 	 * Move a pawn
 	 * @param currentPlayer
@@ -314,12 +365,12 @@ public class Tray {
 	public void movePawn(Player currentPlayer, Position initPosition, Position nextPosition) {
 		
 		switch(currentPlayer){
-		case PLAYER1: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH1;
-		case PLAYER2: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH2;
-		case PLAYER3: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH3;
-		case PLAYER4: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH4;
-		case PLAYER5: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH5;
-		case PLAYER6: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH6;	
+		case PLAYER1: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH1;break;
+		case PLAYER2: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH2;break;
+		case PLAYER3: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH3;break;
+		case PLAYER4: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH4;break;
+		case PLAYER5: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH5;break;
+		case PLAYER6: this.tray[nextPosition.getI()][nextPosition.getJ()] = PlinthType.PLINTH6;break;
 		}
 		this.tray[initPosition.getI()][initPosition.getJ()] = PlinthType.EMPTY_PLINTH;	
 	}
