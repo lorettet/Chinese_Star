@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
  * A tray of Chinese Checker
@@ -314,35 +315,34 @@ public class Tray {
 	 * @return boolean
 	 */
 	public boolean movePawnTest(LinkedList<Position> moveList){
-		//Old code
-		/*if(this.tray[nextPosition.getI()][nextPosition.getJ()] != PlinthType.EMPTY_PLINTH) return false;
-		if(initPosition.getI()-1 == nextPosition.getI() && initPosition.getJ()-1 == nextPosition.getJ()) return true;
-		if(initPosition.getI()-1 == nextPosition.getI() && initPosition.getJ() == nextPosition.getJ()) return true;
-		if(initPosition.getI() == nextPosition.getI() && initPosition.getJ()-1 == nextPosition.getJ()) return true;
-		if(initPosition.getI()+1 == nextPosition.getI() && initPosition.getJ()+1 == nextPosition.getJ()) return true;
-		if(initPosition.getI()+1 == nextPosition.getI() && initPosition.getJ() == nextPosition.getJ()) return true;
-		if(initPosition.getI() == nextPosition.getI() && initPosition.getJ()+1 == nextPosition.getJ()) return true;
-		return false;*/
 		
-		//TODO Parcourir la list pour voir si toute les positions pointent des EMPTY_PLINTH
 		
 		Position initPosition = moveList.get(0);
 		Position finalPosition = moveList.get(moveList.size()-1);
 		
+		//Test for a simple move
 		if(moveList.size()==2){
 			LinkedList<Position> aroundPlinthList = plinthRadar(initPosition);
 			LinkedList<Position> aroundEmptyPlithList = new LinkedList<Position>();
 			
-			for(Iterator it=aroundPlinthList.iterator(); it.hasNext();){
-					if(this.tray[initPosition.getI()][initPosition.getJ()]==PlinthType.EMPTY_PLINTH) aroundEmptyPlithList.add(e/*TODO*/);		}
-			
+			for(Position position : aroundPlinthList){
+					if(this.tray[position.getI()][position.getJ()]==PlinthType.EMPTY_PLINTH) aroundEmptyPlithList.add(position);
+					}
+			if (aroundEmptyPlithList.contains(finalPosition)) return true;
 		}
+		//Test for a complex move
+		else{
+			//TODO hard to do...
+		}
+		
+		
 		
 		return false;
 	}
 	
 	/**
 	 * Detect all the near position of the current position
+	 * @return a list of position
 	 */
 	public LinkedList<Position> plinthRadar(Position currentPosition){
 		
@@ -355,6 +355,7 @@ public class Tray {
 		returnList.add(new Position(currentPosition.getI()+1, currentPosition.getJ()));
 		return returnList;	
 	}
+	
 	
 	/**
 	 * Move a pawn
