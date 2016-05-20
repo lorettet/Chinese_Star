@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 
 public class Position {
 
@@ -41,5 +43,28 @@ public class Position {
 	public boolean equals(Position position){
 		if (this.getI()== position.getI() && this.getJ()== position.getJ()) return true;
 		return false;
+	}
+	
+	/**
+	 * Detect all the near position of the current position
+	 * @return a list of position
+	 */
+	public LinkedList<Position> plinthRadar(){
+		
+		Direction[] allDirections = Direction.values();
+		LinkedList<Position> neighbourPositionsList = new LinkedList<Position>(); 
+		for(Direction direction : allDirections){
+			neighbourPositionsList.add(this.getNeighborPosition(direction));
+		} 
+		return neighbourPositionsList;
+	}
+	
+	/**
+	 * Return the neighbor position of a position in function of the direction given
+	 * @param Direction direction 
+	 * @return the neighbor position
+	 */
+	public Position getNeighborPosition(Direction direction){
+		return new Position(this.getI()+direction.getMoveOnI(),this.getJ()+direction.getMoveOnJ());
 	}
 }

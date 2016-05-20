@@ -29,9 +29,6 @@ public class ChineseCheckerGame
 		this.nbrPlayers = nbrPlayers;
 		this.tray = new Tray(nbrPlayers);
 	}
-
-
-	// TODO(done) detail comment (main algorithm)
 	
 	/**
 	 * Play the Game
@@ -67,7 +64,7 @@ public class ChineseCheckerGame
 				//Ask current player a move of a pawn
 				
 			}
-			while (!(this.tray.movePawnTest(moveList)));
+			while (!(this.tray.movePawnTest(moveList, currentPlayer)));
 			//execute the move
 			this.tray.movePawn(currentPlayer, initPosition, endPosition);
 			//check if the game is finished
@@ -75,7 +72,7 @@ public class ChineseCheckerGame
 			currentPlayer = this.tray.NextPlayer(this.nbrPlayers, currentPlayer);
 			}
 			switch(currentPlayer){
-			case PLAYER1: System.out.println("The player 1 win!");break;
+			case PLAYER1: System.out.println("The player 1 win!"); break;
 			case PLAYER2: System.out.println("The player 2 win!"); break;
 			case PLAYER3: System.out.println("The player 3 win!"); break;
 			case PLAYER4: System.out.println("The player 4 win!"); break;

@@ -92,18 +92,12 @@ public class Tray {
 	 * */
 	private final static int MAX_PLAYER = 6;
 	
-	// TODO(done) write comment
 	/**
 	 * Table of integer named tray
 	 * represents the tray
 	 */
 	private PlinthType[][] tray;
 
-	
-	
-	
-	// TODO(done) fix comment (ask for advice)
-	// TODO(done) fix implementation (ask for advice)
 	/**
 	 * Create a new tray based on a the number of player with all marbles set and ready to play by these players
 	 * @param nbrPlayers the number of player expected
@@ -314,7 +308,7 @@ public class Tray {
 	 * @param nextPosition
 	 * @return boolean
 	 */
-	public boolean movePawnTest(LinkedList<Position> moveList){
+	public boolean movePawnTest(LinkedList<Position> moveList, Player currentPlayer){
 		
 		
 		Position initPosition = moveList.get(0);
@@ -322,7 +316,7 @@ public class Tray {
 		
 		//Test for a simple move
 		if(moveList.size()==2){
-			LinkedList<Position> aroundPlinthList = plinthRadar(initPosition);
+			LinkedList<Position> aroundPlinthList = initPosition.plinthRadar();
 			LinkedList<Position> aroundEmptyPlithList = new LinkedList<Position>();
 			
 			for(Position position : aroundPlinthList){
@@ -334,27 +328,10 @@ public class Tray {
 		else{
 			//TODO hard to do...
 		}
-		
-		
-		
 		return false;
 	}
 	
-	/**
-	 * Detect all the near position of the current position
-	 * @return a list of position
-	 */
-	public LinkedList<Position> plinthRadar(Position currentPosition){
-		
-		LinkedList<Position> returnList = new LinkedList<Position>();
-		returnList.add(new Position(currentPosition.getI()-1, currentPosition.getJ()-1));
-		returnList.add(new Position(currentPosition.getI()-1, currentPosition.getJ()));
-		returnList.add(new Position(currentPosition.getI(), currentPosition.getJ()-1));
-		returnList.add(new Position(currentPosition.getI()+1, currentPosition.getJ()+1));
-		returnList.add(new Position(currentPosition.getI(), currentPosition.getJ()+1));
-		returnList.add(new Position(currentPosition.getI()+1, currentPosition.getJ()));
-		return returnList;	
-	}
+
 	
 	
 	/**

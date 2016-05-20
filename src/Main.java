@@ -3,7 +3,6 @@
  */
 public class Main
 {
-	// TODO(done) main can not throw exceptions (nothing else can catch them)
 	/**
 	 * application launcher main method of the Main class
 	 * @param args command-line arguments (unused)
