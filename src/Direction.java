@@ -24,10 +24,18 @@ public enum Direction {
 		this.moveOnJ = j;
 	}
 
+	/**
+	 * get the move on I attribute
+	 * @return int
+	 */
 	public int getMoveOnI() {
 		return this.moveOnI;
 	}
 
+	/**
+	 * Get the move on J attribute
+	 * @return int
+	 */
 	public int getMoveOnJ() {
 		return this.moveOnJ;
 	}

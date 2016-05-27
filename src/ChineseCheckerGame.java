@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * A game of Chinese checkers
@@ -11,7 +10,7 @@ public class ChineseCheckerGame
 	/**
 	 * Number of players
 	 */
-	private int nbrPlayers;
+	private GameMode gameMode;
 	
 	/**
 	 * The Tray
@@ -24,10 +23,10 @@ public class ChineseCheckerGame
 	 * The tray is set
 	 * @throws UnexpestedNumberOfPlayerException when the number of player is different from 2,3,4 or 6 
 	 */
-	public ChineseCheckerGame(int nbrPlayers) throws UnexpectedNumberOfPlayerException
+	public ChineseCheckerGame(GameMode gameMode) throws UnexpectedNumberOfPlayerException
 	{	
-		this.nbrPlayers = nbrPlayers;
-		this.tray = new Tray(nbrPlayers);
+		this.gameMode = gameMode;
+		this.tray = new Tray(gameMode.getNbrPlayer());
 	}
 	
 	/**
@@ -68,8 +67,8 @@ public class ChineseCheckerGame
 			//execute the move
 			this.tray.movePawn(currentPlayer, initPosition, endPosition);
 			//check if the game is finished
-			if(this.tray.GameWonTest(this.nbrPlayers, currentPlayer)) break;
-			currentPlayer = this.tray.NextPlayer(this.nbrPlayers, currentPlayer);
+			if(this.tray.GameWonTest(this.gameMode.getNbrPlayer(), currentPlayer)) break;
+			currentPlayer = this.tray.NextPlayer(this.gameMode.getNbrPlayer(), currentPlayer);
 			}
 			switch(currentPlayer){
 			case PLAYER1: System.out.println("The player 1 win!"); break;

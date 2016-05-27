@@ -29,7 +29,7 @@ public class Position {
 	 * @return
 	 */
 	public int getI() {
-		return i;
+		return this.i;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class Position {
 	 * @return
 	 */
 	public int getJ() {
-		return j;
+		return this.j;
 	}
 	
 	public boolean equals(Position position){

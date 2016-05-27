@@ -256,7 +256,7 @@ public class Tray {
 		return true;	
 	}
 				/**
-				 * TODO 
+				 * Return the next player depending on the number of players & the current player
 				 * @param nbrPlayers
 				 * @param currentPlayer
 				 * @return
@@ -317,12 +317,25 @@ public class Tray {
 		//Test for a simple move
 		if(moveList.size()==2){
 			LinkedList<Position> aroundPlinthList = initPosition.plinthRadar();
-			LinkedList<Position> aroundEmptyPlithList = new LinkedList<Position>();
+			LinkedList<Position> aroundEmptyPlinthList = new LinkedList<Position>();
 			
 			for(Position position : aroundPlinthList){
-					if(this.tray[position.getI()][position.getJ()]==PlinthType.EMPTY_PLINTH) aroundEmptyPlithList.add(position);
+					if(this.tray[position.getI()][position.getJ()]==PlinthType.EMPTY_PLINTH)
+						aroundEmptyPlinthList.add(position);
 					}
-			if (aroundEmptyPlithList.contains(finalPosition)) return true;
+			if (aroundEmptyPlinthList.contains(finalPosition)) return true;
+			
+			LinkedList<Position> aroundEmptySecondPlinthList = new LinkedList<Position>();
+
+			/*
+			 * Save the second empty neighbor position for each directions depending on the initial position
+			 */
+			for(Direction direction : Direction.values()){
+				Position position = (initPosition.getNeighborPosition(direction)).getNeighborPosition(direction);
+				if (this.tray[position.getI()][position.getJ()]==PlinthType.EMPTY_PLINTH)
+					aroundEmptySecondPlinthList.add((initPosition.getNeighborPosition(direction)).getNeighborPosition(direction));
+			}
+			if(aroundEmptySecondPlinthList.contains(finalPosition)) return true;
 		}
 		//Test for a complex move
 		else{
